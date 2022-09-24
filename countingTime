@@ -36,3 +36,15 @@ print(a.device, t2 - t0, c.norm(2))
 
 # check the number of devices
 print(f'the number of devices is : {torch.cuda.device_count()}')
+
+
+##  output  ##
+
+D:\Users\Chrazqee_\anaconda3\envs\pytorch\python.exe D:/pyCharmLeetCodeWorkspace/machineLearning/pytorch_example.py 
+1.12.1
+True
+cpu 0.21497464179992676 tensor(141267.4375)
+cuda:0 0.5280272960662842 tensor(141410.4375, device='cuda:0')
+cuda:0 0.0010352134704589844 tensor(141410.4375, device='cuda:0')
+the number of devices is : 1
+
