@@ -1,0 +1,38 @@
+# coding:UTF-8
+# @Author:Chrazqee_
+import torch
+import time
+print(torch.__version__)
+print(torch.cuda.is_available())
+
+# a, b => matrix
+# a => row = 10000, col = 1000 two-dimension matrix
+# b => row = 1000,  col = 2000 two-dimension matrix
+a = torch.randn(10000, 1000)
+b = torch.randn(1000, 2000)
+# print(a)
+# print(b)
+
+t0 = time.time()
+c = torch.matmul(a, b)  # the multiplication of CPU model
+t1 = time.time()
+print(a.device, t1 - t0, c.norm(2))
+
+# move a, b matrix to 'cuda' device
+device = torch.device('cuda')
+a = a.to(device)
+b = b.to(device)
+
+t0 = time.time()
+c = torch.matmul(a, b)  # run on GPU
+t2 = time.time()
+print(a.device, t2 - t0, c.norm(2))
+
+# run again => asure the stability
+t0 = time.time()
+c = torch.matmul(a, b)
+t2 = time.time()
+print(a.device, t2 - t0, c.norm(2))
+
+# check the number of devices
+print(f'the number of devices is : {torch.cuda.device_count()}')
